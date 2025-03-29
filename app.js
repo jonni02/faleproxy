@@ -53,14 +53,18 @@ app.post('/fetch', async (req, res) => {
     }).each(function() {
       // Replace text content but not in URLs or attributes
       const text = $(this).text();
-      const newText = text.replace(/Yale/g, 'Fale').replace(/yale/g, 'fale');
+      const newText = text
+        .replace(/Yale/g, 'Fale (you read that right)')
+        .replace(/yale/g, 'fale (you read that right)');
       if (text !== newText) {
         $(this).replaceWith(newText);
       }
     });
     
     // Process title separately
-    const title = $('title').text().replace(/Yale/g, 'Fale').replace(/yale/g, 'fale');
+    const title = $('title').text()
+      .replace(/Yale/g, 'Fale (you read that right)')
+      .replace(/yale/g, 'fale (you read that right)');
     $('title').text(title);
     
     return res.json({ 
