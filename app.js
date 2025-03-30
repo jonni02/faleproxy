@@ -41,7 +41,10 @@ app.post('/fetch', async (req, res) => {
         // Only process if it's a text node
         if (content && $(el).children().length === 0) {
           // Replace Yale with Fale in text content only
-          content = content.replace(/Yale/g, 'Fale (you read that right)').replace(/yale/g, 'fale (you read that right)');
+          content = content
+            .replace(/YALE/g, 'FALE (you read that right)')
+            .replace(/Yale/g, 'Fale (you read that right)')
+            .replace(/yale/g, 'fale (you read that right)');
           $(el).html(content);
         }
       }
@@ -54,6 +57,7 @@ app.post('/fetch', async (req, res) => {
       // Replace text content but not in URLs or attributes
       const text = $(this).text();
       const newText = text
+        .replace(/YALE/g, 'FALE (you read that right)')
         .replace(/Yale/g, 'Fale (you read that right)')
         .replace(/yale/g, 'fale (you read that right)');
       if (text !== newText) {
@@ -63,6 +67,7 @@ app.post('/fetch', async (req, res) => {
     
     // Process title separately
     const title = $('title').text()
+      .replace(/YALE/g, 'FALE (you read that right)')
       .replace(/Yale/g, 'Fale (you read that right)')
       .replace(/yale/g, 'fale (you read that right)');
     $('title').text(title);
